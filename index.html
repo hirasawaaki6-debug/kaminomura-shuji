@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>上ノ村習字展覧会｜書と自然の美</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700;900&display=swap');
+
+:root {
+    --ink: #20251f;
+    --deep-green: #193b2d;
+    --green: #3f6950;
+    --gold: #b9984b;
+    --light-gold: #e4cf91;
+    --paper: #f7f3e8;
+    --white: #fffdf7;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", serif;
+    color: var(--ink);
+    background:
+        radial-gradient(circle at 20% 20%, rgba(190,160,100,.08), transparent 25%),
+        radial-gradient(circle at 80% 70%, rgba(50,90,60,.06), transparent 30%),
+        var(--paper);
+    line-height: 1.9;
+}
+
+/* ナビゲーション */
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 6%;
+    color: white;
+    border-bottom: 1px solid rgba(255,255,255,.25);
+}
+
+.logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: .18em;
+}
+
+.logo small {
+    display: block;
+    font-size: .55rem;
+    letter-spacing: .3em;
+    opacity: .75;
+    margin-top: -5px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: .85rem;
+    letter-spacing: .15em;
+    transition: color .3s;
+}
+
+.nav-links a:hover {
+    color: var(--light-gold);
+}
+
+/* メインビジュアル */
+.hero {
+    position: relative;
+    min-height: 850px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    color: white;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(15,30,23,.9) 0%,
+            rgba(20,45,32,.65) 45%,
+            rgba(20,45,32,.25) 100%
+        ),
+        linear-gradient(
+            180deg,
+            #527f89 0%,
+            #b8d3c4 38%,
+            #668b64 63%,
+            #1c4030 100%
+        );
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(145deg, transparent 45%, rgba(255,255,255,.16) 45.2%, transparent 46%),
+        linear-gradient(35deg, transparent 48%, rgba(255,255,255,.1) 48.2%, transparent 49%);
+    opacity: .8;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: -5%;
+    width: 110%;
+    height: 43%;
+    background: #183d2c;
+    clip-path: polygon(
+        0 100%,
+        0 65%,
+        8% 48%,
+        17% 68%,
+        29% 28%,
+        40% 65%,
+        53% 20%,
+        65% 65%,
+        78% 35%,
+        89% 67%,
+        100% 42%,
+        100% 100%
+    );
+    opacity: .95;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 90px;
+}
+
+.hero-kicker {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: .8rem;
+    letter-spacing: .35em;
+    color: var(--light-gold);
+    margin-bottom: 25px;
+}
+
+.hero-kicker::before {
+    content: "";
+    width: 55px;
+    height: 1px;
+    background: var(--light-gold);
+}
+
+.hero h1 {
+    font-size: clamp(3rem, 7vw, 6.5rem);
+    font-weight: 900;
+    letter-spacing: .18em;
+    line-height: 1.25;
+    text-shadow: 3px 4px 15px rgba(0,0,0,.4);
+}
+
+.hero h1 span {
+    display: block;
+    font-size: .27em;
+    font-weight: 400;
+    letter-spacing: .4em;
+    margin-top: 25px;
+    color: #eee8d5;
+}
+
+.hero-description {
+    max-width: 520px;
+    margin-top: 35px;
+    font-size: 1rem;
+    letter-spacing: .12em;
+    color: #f2f0e7;
+}
+
+.hero-date {
+    margin-top: 45px;
+    display: inline-block;
+    padding: 14px 25px;
+    border: 1px solid rgba(228,207,145,.7);
+    background: rgba(0,0,0,.18);
+    font-size: .85rem;
+    letter-spacing: .2em;
+}
+
+.vertical-text {
+    position: absolute;
+    z-index: 2;
+    right: 7%;
+    top: 35%;
+    writing-mode: vertical-rl;
+    font-size: 1rem;
+    letter-spacing: .45em;
+    color: rgba(255,255,255,.75);
+}
+
+/* セクション共通 */
+.section {
+    padding: 110px 6%;
+}
+
+.section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.section-heading {
+    margin-bottom: 50px;
+}
+
+.section-heading .en {
+    display: block;
+    font-family: Arial, sans-serif;
+    font-size: .7rem;
+    font-weight: bold;
+    letter-spacing: .35em;
+    color: var(--gold);
+    margin-bottom: 12px;
+}
+
+.section-heading h2 {
+    font-size: 2.3rem;
+    font-weight: 700;
+    letter-spacing: .15em;
+    color: var(--deep-green);
+}
+
+.section-heading p {
+    margin-top: 15px;
+    color: #777;
+    font-size: .9rem;
+}
+
+/* ごあいさつ */
+.about {
+    background: var(--white);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+}
+
+.about-text {
+    font-size: .95rem;
+    color: #555;
+}
+
+.about-text p + p {
+    margin-top: 20px;
+}
+
+.about-visual {
+    min-height: 350px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            rgba(25,59,45,.25),
+            rgba(25,59,45,.25)
+        ),
+        url("https://images.unsplash.com/photo-1601058268499-e52658b8bb88?auto=format&fit=crop&w=1000&q=85")
+        center/cover;
+}
+
+.about-visual::after {
+    content: "";
+    position: absolute;
+    inset: 18px;
+    border: 1px solid rgba(228,207,145,.85);
+}
+
+/* 開催概要 */
+.info-section {
+    background: #e9e5d8;
+}
+
+.info-box {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: #c8c0a9;
+    border: 1px solid #c8c0a9;
+}
+
+.info-item {
+    background: #f8f5eb;
+    padding: 35px 25px;
+    text-align: center;
+}
+
+.info-item .label {
+    font-size: .75rem;
+    letter-spacing: .25em;
+    color: var(--gold);
+    margin-bottom: 12px;
+}
+
+.info-item .value {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--deep-green);
+}
+
+/* フッター */
+footer {
+    background: #172e24;
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.footer-title {
+    font-size: 1.5rem;
+    letter-spacing: .25em;
+    margin-bottom: 15px;
+}
+
+footer p {
+    font-size: .75rem;
+    color: #aab9ad;
+    letter-spacing: .12em;
+}
+
+/* スマホ対応 */
+@media (max-width: 700px) {
+    .navbar {
+        padding: 20px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero {
+        min-height: 750px;
+    }
+
+    .hero-content {
+        padding-top: 70px;
+    }
+
+    .hero h1 {
+        font-size: 3.2rem;
+        letter-spacing: .12em;
+    }
+
+    .hero-description {
+        font-size: .85rem;
+    }
+
+    .vertical-text {
+        right: 5%;
+        top: 25%;
+        font-size: .75rem;
+    }
+
+    .section {
+        padding: 70px 20px;
+    }
+
+    .section-heading h2 {
+        font-size: 1.8rem;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .about-visual {
+        min-height: 260px;
+    }
+
+    .info-box {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ナビゲーション -->
+<nav class="navbar">
+    <div class="logo">
+        上ノ村習字展覧会
+        <small>SHO EXHIBITION</small>
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="#about">ごあいさつ</a></li>
+        <li><a href="#information">開催概要</a></li>
+    </ul>
+</nav>
+
+<!-- メインビジュアル -->
+<header class="hero">
+    <div class="hero-content">
+        <div class="hero-kicker">KAMINOMURA CALLIGRAPHY EXHIBITION</div>
+
+        <h1>
+            上ノ村
+            <span>習字展覧会</span>
+        </h1>
+
+        <p class="hero-description">
+            豊かな自然に育まれた感性と、<br>
+            一筆一筆に込められた想い。
+        </p>
+
+        <div class="hero-date">
+            2026　｜　SHO & NATURE
+        </div>
+    </div>
+
+    <div class="vertical-text">
+        墨の美しさ、心のかたち
+    </div>
+</header>
+
+<!-- ごあいさつ -->
+<section class="section about" id="about">
+    <div class="section-inner">
+        <div class="section-heading">
+            <span class="en">MESSAGE</span>
+            <h2>ごあいさつ</h2>
+        </div>
+
+        <div class="about-grid">
+            <div class="about-text">
+                <p>
+                    本日は「上ノ村習字展覧会」のホームページをご覧いただき、
+                    誠にありがとうございます。
+                </p>
+
+                <p>
+                    本展覧会では、子どもから大人まで、
+                    一人ひとりが心を込めて書き上げた作品を展示しています。
+                </p>
+
+                <p>
+                    上ノ村の豊かな自然に囲まれながら生まれた、
+                    力強く、個性あふれる書の世界をお楽しみください。
+                </p>
+            </div>
+
+            <div class="about-visual"></div>
+        </div>
+    </div>
+</section>
+
+<!-- 開催概要 -->
+<section class="section info-section" id="information">
+    <div class="section-inner">
+        <div class="section-heading">
+            <span class="en">INFORMATION</span>
+            <h2>開催概要</h2>
+            <p>皆さまのご来場を心よりお待ちしております。</p>
+        </div>
+
+        <div class="info-box">
+            <div class="info-item">
+                <div class="label">DATE</div>
+                <div class="value">
+                    2026年〇月〇日（土）<br>
+                    〜 〇月〇日（日）
+                </div>
+            </div>
+
+            <div class="info-item">
+                <div class="label">TIME</div>
+                <div class="value">
+                    10:00 〜 17:00
+                </div>
+            </div>
+
+            <div class="info-item">
+                <div class="label">PLACE</div>
+                <div class="value">
+                    上ノ村公民館<br>
+                    電話番号：確認中
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- フッター -->
+<footer>
+    <div class="footer-title">上ノ村習字展覧会</div>
+    <p>SHO EXHIBITION｜KAMINOMURA</p>
+    <p style="margin-top:20px;">© 2026 上ノ村習字展覧会 All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
